@@ -6,7 +6,7 @@ engines:
     name: "stockfish.exe"                 # Binary name of the engine to use.
     ponder: true                          # Think on opponent's time.
     silence_stderr: false                 # Suppresses stderr output.
-    move_overhead_multiplier: 50.0         # Increase if your bot flags games too often. Default move overhead is 1 second per 1 minute initital time.
+    move_overhead_multiplier: 20.0         # Increase if your bot flags games too often. Default move overhead is 1 second per 1 minute initital time.
     uci_options:                          # Arbitrary UCI options passed to the engine. (Commenting allowed)
       Threads: 8                          # Max CPU threads the engine can use.
       Hash: 1024                           # Max memory (in megabytes) the engine can allocate.
@@ -112,7 +112,7 @@ online_moves:
     timeout: 3                            # Time the server has to respond.
 
 offer_draw:
-  enabled: true                           # Activate whether the bot should offer draw.
+  enabled: false                           # Activate whether the bot should offer draw.
   score: 10                               # If the absolute value of the score is less than or equal to this value, the bot offers/accepts draw (in cp)
   consecutive_moves: 10                   # How many moves in a row the absolute value of the score has to be below the draw value
   min_game_length: 35                     # Earliest move in which draw is offered.
@@ -145,7 +145,7 @@ challenge:                                # Incoming challenges. (Commenting all
   time_controls:                          # Speeds or time controls in initial_minutes+increment_seconds format to accept.
     - bullet
     - blitz
-#    - rapid
+    - rapid
 #   - classical
 #   - 25+0
   bot_modes:                              # Game modes to accept against BOTs.
@@ -160,8 +160,12 @@ matchmaking:
   timeout: 30                             # Time until a challenge is canceled.
   selection: weighted_random              # Matchmkaing type selection is one of "weighted_random", "sequential" or "cyclic".
   types:                                  # Matchmaking types of which one is selected before each game.
-    bullet:                               # Arbitrary name of the matchmaking type. Names must be unique.
-      tc: 0.5+0                             # Time control in initial_minutes+increment_seconds format.
+    hyperbullet:                               # Arbitrary name of the matchmaking type. Names must be unique.
+      tc: 0.5+0                           # Time control in initial_minutes+increment_seconds format.
+    bullet:
+      tc: 1+1
+    blitz:
+      tc: 3+0   
 #   casual_chess960:
 #     tc: 0.5+1
 #     rated: false
