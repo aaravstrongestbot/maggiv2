@@ -146,7 +146,7 @@ challenge:                                # Incoming challenges. (Commenting all
   time_controls:                          # Speeds or time controls in initial_minutes+increment_seconds format to accept.
     - bullet
     - blitz
-#    - rapid
+    - rapid
 #   - classical
 #   - 25+0
   bot_modes:                              # Game modes to accept against BOTs.
@@ -161,8 +161,12 @@ matchmaking:
   timeout: 30                             # Time until a challenge is canceled.
   selection: weighted_random              # Matchmkaing type selection is one of "weighted_random", "sequential" or "cyclic".
   types:                                  # Matchmaking types of which one is selected before each game.
-    bullet:                               # Arbitrary name of the matchmaking type. Names must be unique.
-      tc: 0.5+0                             # Time control in initial_minutes+increment_seconds format.
+    hyperbullet:                               # Arbitrary name of the matchmaking type. Names must be unique.
+      tc: 0.5+0                           # Time control in initial_minutes+increment_seconds format.
+    bullet:
+      tc: 1+1
+    blitz:
+      tc: 3+0   
 #   casual_chess960:
 #     tc: 0.5+1
 #     rated: false
