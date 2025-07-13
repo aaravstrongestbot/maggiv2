@@ -1,4 +1,4 @@
-name: Запуск бота
+name: Run Bot
 
 on:
   workflow_dispatch:
@@ -17,25 +17,25 @@ jobs:
       TOKEN: ${{ secrets.TOKEN }}
 
     steps:
-      - name: Клонировать репозиторий
+      - name: Checkout actions
         uses: actions/checkout@v3
 
-      - name: Установить Python
+      - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
 
-      - name: Установить зависимости
+      - name: Install Requirements
         run: |
           pip install -r requirements.txt
 
-      - name: Подставить токен
+      - name: Lichess API Token
         run: |
           sed -i "s/^token:.*/token: \"${TOKEN}\"/" config.yml
           
-      - name: Сделать движок исполняемым
+      - name: Make stockfish executable
         run: chmod +x ./engines/stockfish.exe
 
-      - name: Запустить бота
+      - name: Run Bot
         run: python user_interface.py --matchmaking
 
